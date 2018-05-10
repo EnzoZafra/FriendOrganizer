@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{59C259DF-8870-4AD4-AB6F-F29045D1C6FC}</ProjectGuid>
+    <ProjectGuid>{8322D088-182A-4AA9-8A0A-67FE7F511A77}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WPFPlayroom</RootNamespace>
-    <AssemblyName>WPFPlayroom</AssemblyName>
+    <RootNamespace>FriendOrganizer.UI</RootNamespace>
+    <AssemblyName>FriendOrganizer.UI</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -89,7 +89,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

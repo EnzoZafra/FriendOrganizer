@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPFPlayroom.Properties
+namespace FriendOrganizer.UI.Properties
 {
 
 
