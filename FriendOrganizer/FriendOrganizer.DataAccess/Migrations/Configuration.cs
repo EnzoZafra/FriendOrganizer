@@ -27,6 +27,7 @@ namespace FriendOrganizer.DataAccess.Migrations
                     new Friend { FirstName = "Julia", LastName = "Boehler" },
                     new Friend { FirstName = "Thomas", LastName = "Huber" }
                 );
+            context.SaveChanges();
         }
     }
 }
