@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using FriendOrganizer.UI.Startup;
+using System;
 using System.Windows;
 
 namespace FriendOrganizer.UI
@@ -19,6 +20,16 @@ namespace FriendOrganizer.UI
             // Resolve will see MainWindow needs MainViewModel which needs IFriendDataService
             var mainWindow = container.Resolve<MainWindow>();
             mainWindow.Show();
+        }
+
+
+        // Processing unhandled exceptions
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show("Unexpected error occured. Please contact your admin." +
+                Environment.NewLine + e.Exception.Message, "Unexpected Error");
+
+            e.Handled = true;
         }
     }
 }
