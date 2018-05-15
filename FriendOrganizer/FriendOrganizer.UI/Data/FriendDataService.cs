@@ -17,16 +17,11 @@ namespace FriendOrganizer.UI.Data
             _contextCreator = contextCreator;
         }
 
-        public async Task<List<Friend>> GetAllAsync()
+        public async Task<Friend> GetByIdAsync(int friendId)
         {
             using (var context = _contextCreator())
             {
-                // Test async works
-                //var friends = await context.Friends.AsNoTracking().ToListAsync();
-                //await Task.Delay(3000);
-                //return friends;
-
-                return await context.Friends.AsNoTracking().ToListAsync();
+                return await context.Friends.AsNoTracking().SingleAsync(f => f.Id == friendId);
             }
         }
     }
