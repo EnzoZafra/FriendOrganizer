@@ -33,7 +33,6 @@ namespace FriendOrganizer.UI.Wrapper
 
         protected override IEnumerable<string> ValidateProperty(string propertyName)
         {
-            ClearErrors(propertyName);
             switch (propertyName)
             {
                 case nameof(FirstName):
