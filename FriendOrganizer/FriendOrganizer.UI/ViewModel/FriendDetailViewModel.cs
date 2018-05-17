@@ -18,18 +18,16 @@ namespace FriendOrganizer.UI.ViewModel
     public class FriendDetailViewModel : DetailViewModelBase, IFriendDetailViewModel
     {
         private IFriendRepository _friendRepository;
-        private IMessageDialogService _messageDialogService;
         private IProgrammingLanguageLookupDataService _programmingLanguageLookupDataService;
         private FriendWrapper _friend;
         private FriendPhoneNumberWrapper _selectedPhoneNumber;
 
         public FriendDetailViewModel(IFriendRepository friendRepository, IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService, IProgrammingLanguageLookupDataService programmingLanguageLookupDataService)
-            :base(eventAggregator)
+            :base(eventAggregator, messageDialogService)
         {
             // Inject dependencies
             _friendRepository = friendRepository;
-            _messageDialogService = messageDialogService;
             _programmingLanguageLookupDataService = programmingLanguageLookupDataService;
 
             // Subscribe to event, pass in event handler
@@ -179,11 +177,11 @@ namespace FriendOrganizer.UI.ViewModel
         {
             if (await _friendRepository.HasMeetingsAsync(Friend.Id))
             {
-                _messageDialogService.ShowInfoDialog($"{Friend.FirstName} {Friend.LastName} can't be deleted, as this friend is part of at least one meeting.");
+                MessageDialogService.ShowInfoDialog($"{Friend.FirstName} {Friend.LastName} can't be deleted, as this friend is part of at least one meeting.");
                 return;
             }
 
-            var result = _messageDialogService.ShowOkCancelDialog($"Do you really want to delete the friend {Friend.FirstName} {Friend.LastName}",
+            var result = MessageDialogService.ShowOkCancelDialog($"Do you really want to delete the friend {Friend.FirstName} {Friend.LastName}",
                                                                    "Question");
             if (result == MessageDialogResult.OK)
             {

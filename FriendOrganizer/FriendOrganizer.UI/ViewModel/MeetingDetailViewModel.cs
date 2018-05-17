@@ -19,7 +19,6 @@ namespace FriendOrganizer.UI.ViewModel
     {
         private MeetingWrapper _meeting;
         private IMeetingRepository _meetingRepository;
-        private IMessageDialogService _messageDialogService;
 
         private Friend _selectedAvailableFriend;
         private Friend _selectedAddedFriend;
@@ -27,10 +26,9 @@ namespace FriendOrganizer.UI.ViewModel
 
         public MeetingDetailViewModel(IEventAggregator eventAggregator,
                                         IMessageDialogService messageDialogService,
-                                        IMeetingRepository meetingRepository) : base(eventAggregator)
+                                        IMeetingRepository meetingRepository) : base(eventAggregator, messageDialogService)
         {
             _meetingRepository = meetingRepository;
-            _messageDialogService = messageDialogService;
 
             AddedFriends = new ObservableCollection<Friend>();
             AvailableFriends = new ObservableCollection<Friend>();
@@ -113,7 +111,7 @@ namespace FriendOrganizer.UI.ViewModel
 
         protected override async void OnDeleteExecute()
         {
-            var result = _messageDialogService.ShowOkCancelDialog($"Do you really want to delete the meeting {Meeting.Title}?",
+            var result = MessageDialogService.ShowOkCancelDialog($"Do you really want to delete the meeting {Meeting.Title}?",
                                                                    "Question");
             if (result == MessageDialogResult.OK)
             {
