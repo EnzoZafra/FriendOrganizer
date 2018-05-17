@@ -9,6 +9,7 @@ namespace FriendOrganizer.Model
         public Friend()
         {
             PhoneNumbers = new Collection<FriendPhoneNumber>();
+            Meetings = new Collection<Meeting>();
         }
         public int Id { get; set; }
 
@@ -28,5 +29,7 @@ namespace FriendOrganizer.Model
         public ProgrammingLanguage FavoriteLanguage { get; set; }
 
         public ICollection<FriendPhoneNumber> PhoneNumbers { get; set; }
+
+        public ICollection<Meeting> Meetings { get; set; }
     }
 }
