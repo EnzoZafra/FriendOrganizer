@@ -5,6 +5,7 @@ using FriendOrganizer.UI.View.Services;
 using FriendOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -44,6 +45,9 @@ namespace FriendOrganizer.UI.ViewModel
             var friend = friendId.HasValue ?
                 await _friendRepository.GetByIdAsync(friendId.Value)
                 : CreateNewFriend();
+
+            Id = friend.Id;
+
             InitializeFriend(friend);
 
             InitializeFriendPhoneNumbers(friend.PhoneNumbers);
@@ -90,6 +94,30 @@ namespace FriendOrganizer.UI.ViewModel
                 // Trick to Trigger validation
                 Friend.FirstName = "";
             }
+            SetTitle();
+        }
+
+        private void Friend_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (!HasChanges)
+            {
+                HasChanges = _friendRepository.HasChanges();
+            }
+
+            if(e.PropertyName == nameof(Friend.HasErrors))
+            {
+                ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            }
+            if(e.PropertyName == nameof(Friend.FirstName)
+               || e.PropertyName == nameof(Friend.LastName))
+            {
+                SetTitle();
+            }
+        }
+
+        private void SetTitle()
+        {
+            Title = $"{Friend.FirstName} {Friend.LastName}";
         }
 
         private async Task LoadProgrammingLanguagesLookupAsync()
@@ -104,18 +132,6 @@ namespace FriendOrganizer.UI.ViewModel
             }
         }
 
-        private void Friend_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (!HasChanges)
-            {
-                HasChanges = _friendRepository.HasChanges();
-            }
-
-            if(e.PropertyName == nameof(Friend.HasErrors))
-            {
-                ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
-            }
-        }
 
         public FriendWrapper Friend
         {
@@ -147,6 +163,7 @@ namespace FriendOrganizer.UI.ViewModel
         {
             await _friendRepository.SaveAsync();
             HasChanges = _friendRepository.HasChanges();
+            Id = Friend.Id;
             RaiseDetailSavedEvent(Friend.Id, $"{Friend.FirstName} {Friend.LastName}");
         }
 

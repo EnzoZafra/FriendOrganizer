@@ -84,6 +84,9 @@ namespace FriendOrganizer.UI.ViewModel
             var meeting = meetingId.HasValue ?
                 await _meetingRepository.GetByIdAsync(meetingId.Value)
                 : CreateNewMeeting();
+
+            Id = meeting.Id;
+
             InitializeMeeting(meeting);
 
             _allFriends = await _meetingRepository.GetAllFriendsAsync();
@@ -134,6 +137,7 @@ namespace FriendOrganizer.UI.ViewModel
         {
             await _meetingRepository.SaveAsync();
             HasChanges = _meetingRepository.HasChanges();
+            Id = Meeting.Id;
             RaiseDetailSavedEvent(Meeting.Id, Meeting.Title);
         }
 
@@ -160,6 +164,7 @@ namespace FriendOrganizer.UI.ViewModel
                 // Trick to trigger validation
                 Meeting.Title = "";
             }
+            SetTitle();
         }
 
         private void Meeting_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -173,6 +178,16 @@ namespace FriendOrganizer.UI.ViewModel
             {
                 ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
             }
+
+            if(e.PropertyName == nameof(Meeting.Title))
+            {
+                SetTitle();
+            }
+        }
+
+        private void SetTitle()
+        {
+            Title = Meeting.Title;
         }
 
         private bool OnRemoveFriendCanExecute()
