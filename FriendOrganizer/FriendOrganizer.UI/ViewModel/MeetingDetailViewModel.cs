@@ -92,6 +92,12 @@ namespace FriendOrganizer.UI.ViewModel
 
             Meeting.PropertyChanged += Meeting_PropertyChanged;
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+
+            if(Meeting.Id == 0)
+            {
+                // Trick to trigger validation
+                Meeting.Title = "";
+            }
         }
 
         private void Meeting_PropertyChanged(object sender, PropertyChangedEventArgs e)

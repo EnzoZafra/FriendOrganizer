@@ -24,8 +24,10 @@ namespace FriendOrganizer.UI.Startup
 
             builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
-            builder.RegisterType<FriendDetailViewModel>().As<IFriendDetailViewModel>();
-            builder.RegisterType<MeetingDetailViewModel>().As<IMeetingDetailViewModel>();
+            builder.RegisterType<FriendDetailViewModel>()
+                .Keyed<IDetailViewModel>(nameof(FriendDetailViewModel));
+            builder.RegisterType<MeetingDetailViewModel>()
+                .Keyed<IDetailViewModel>(nameof(MeetingDetailViewModel));
 
             // Register a FriendDataService whenever a IFriendDataService is required
             builder.RegisterType<FriendRepository>().As<IFriendRepository>();
