@@ -52,6 +52,10 @@
     <Compile Include="Migrations\201805102137244_InitialDatabase.Designer.cs">
       <DependentUpon>201805102137244_InitialDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805171518495_AddedProgrammingLanguage.cs" />
+    <Compile Include="Migrations\201805171518495_AddedProgrammingLanguage.Designer.cs">
+      <DependentUpon>201805171518495_AddedProgrammingLanguage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +72,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805102137244_InitialDatabase.resx">
       <DependentUpon>201805102137244_InitialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805171518495_AddedProgrammingLanguage.resx">
+      <DependentUpon>201805171518495_AddedProgrammingLanguage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
