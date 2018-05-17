@@ -27,7 +27,7 @@
         <toolkit:DateTimePicker Grid.Row="3" Value="{Binding Meeting.DateFrom, 
             Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
         
-        <Label Grid.Row="4" Content="Email" Margin="10 0"/>
+        <Label Grid.Row="4" Content="End" Margin="10 0"/>
         <toolkit:DateTimePicker Grid.Row="5" Value="{Binding Meeting.DateTo, 
             Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
 
