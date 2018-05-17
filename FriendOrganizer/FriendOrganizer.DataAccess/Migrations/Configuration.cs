@@ -38,6 +38,9 @@ namespace FriendOrganizer.DataAccess.Migrations
                 );
 
             context.SaveChanges();
+
+            context.FriendPhoneNumbers.AddOrUpdate(pn => pn.Number,
+                new FriendPhoneNumber { Number = "780-554-4226", FriendId = context.Friends.FirstOrDefault().Id });
         }
     }
 }

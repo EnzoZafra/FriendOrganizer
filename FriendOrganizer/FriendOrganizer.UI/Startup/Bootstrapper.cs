@@ -24,8 +24,11 @@ namespace FriendOrganizer.UI.Startup
             builder.RegisterType<MessageDialogService>().As<IMessageDialogService>();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<FriendDetailViewModel>().As<IFriendDetailViewModel>();
+
             // Register a FriendDataService whenever a IFriendDataService is required
             builder.RegisterType<FriendRepository>().As<IFriendRepository>();
+
+            // IFriendLookup & IProgrammingLanguages are both covered by this
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
 
             return builder.Build();
