@@ -7,7 +7,7 @@
         xmlns:view="clr-namespace:FriendOrganizer.UI.View"
         xmlns:viewModel="clr-namespace:FriendOrganizer.UI.ViewModel"
         mc:Ignorable="d"
-        Title="FriendOrganizer" Height="600" Width="800" FontSize="20"
+        Title="FriendOrganizer" Height="600" Width="1000" FontSize="20"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:FriendDetailViewModel}">
@@ -15,6 +15,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:MeetingDetailViewModel}">
             <view:MeetingDetailView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ProgrammingLanguageDetailViewModel}">
+            <view:ProgrammingLanguageDetailView/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -33,6 +36,11 @@
                 <MenuItem Header="New Meeting" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:MeetingDetailViewModel}"/>
             </MenuItem>
+			<MenuItem Header="Edit">
+				<MenuItem Header="Programming Languages"
+						  Command="{Binding OpenSingleDetailViewCommand}"
+						  CommandParameter="{x:Type viewModel:ProgrammingLanguageDetailViewModel}"/>
+			</MenuItem>
         </Menu>
         <view:NavigationView Grid.Row="1" DataContext="{Binding NavigationViewModel}"/>
         <TabControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding DetailViewModels}"
