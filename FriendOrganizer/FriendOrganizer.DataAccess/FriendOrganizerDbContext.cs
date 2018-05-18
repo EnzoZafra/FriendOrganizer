@@ -21,7 +21,6 @@ namespace FriendOrganizer.DataAccess
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
             // FluentAPI Constraints example
             //modelBuilder.Configurations.Add(new FriendConfiguration());
         }
